@@ -48,11 +48,11 @@ pipeline {
       }
     }
 
-    stage("terraform apply") {
+    stage("terraform plzn") {
       steps {
         script {
           dir('terraform'){
-            sh "terraform apply --auto-approve"
+            sh "terraform plan"
           }
         }
       }
