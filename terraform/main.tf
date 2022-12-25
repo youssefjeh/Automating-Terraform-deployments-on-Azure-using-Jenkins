@@ -126,10 +126,10 @@ resource "azurerm_linux_virtual_machine" "vm" {
   custom_data = filebase64("azure-user-data.sh")
   disable_password_authentication = false
 
-  /*admin_ssh_key {
+  admin_ssh_key {
     username   = "adminuser"
     public_key = "server-ssh-key"
-  }*/
+  }
 
   os_disk {
     caching              = "ReadWrite"
