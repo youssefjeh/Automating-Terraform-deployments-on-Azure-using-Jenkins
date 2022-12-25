@@ -48,11 +48,12 @@ pipeline {
       }
     }
 
-    stage("terraform plzn") {
+    stage("terraform plan") {
       steps {
         script {
           dir('terraform'){
-            sh "terraform plan"
+            sh 'az login'
+            sh 'terraform plan'
           }
         }
       }
