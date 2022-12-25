@@ -127,7 +127,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
 
   admin_ssh_key {
     username   = "adminuser"
-    public_key = file("~/.ssh/devazurekey.pub")
+    public_key = "server-ssh-key"
   }
 
   os_disk {
