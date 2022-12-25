@@ -29,13 +29,29 @@ pipeline {
       }
     }
 
-    stage("provision server") {
-      // tf provision server
+    stage("terraform init") {
       steps {
         script {
           dir('terraform'){
             sh "terraform init"
+          }
+        }
+      }
+    }
+    stage("terraform validate") {
+      steps {
+        script {
+          dir('terraform'){
             sh 'terraform validate'
+          }
+        }
+      }
+    }
+
+    stage("terraform apply") {
+      steps {
+        script {
+          dir('terraform'){
             sh "terraform apply --auto-approve"
           }
         }
