@@ -125,10 +125,10 @@ resource "azurerm_linux_virtual_machine" "vm" {
   network_interface_ids = [azurerm_network_interface.nic.id]
   custom_data = filebase64("azure-user-data.sh")
 
-  admin_ssh_key {
+  /*admin_ssh_key {
     username   = "adminuser"
     public_key = "server-ssh-key"
-  }
+  }*/
 
   os_disk {
     caching              = "ReadWrite"
