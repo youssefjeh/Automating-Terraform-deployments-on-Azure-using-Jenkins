@@ -52,7 +52,9 @@ pipeline {
       steps {
         script {
           dir('terraform'){
-            sh 'az login'
+            withCredentials([azureServicePrincipal('azure-credentials')]) {
+    sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
+          }
             sh 'terraform plan'
           }
         }
