@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('Authenticate with Azure') {
       steps {
-        sh 'azureLogin' credentialsId: 'azure-credentials'
+        sazureLogin credentialsId: 'azure-credentials'
       }
     }
     stage("terraform init") {
