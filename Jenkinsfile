@@ -1,34 +1,9 @@
-@Library('jenkins-SL') 
-def gv
-
 pipeline {
   agent any
-  tools {
-    maven 'Maven'
-  }
   parameters {
     choice(choices: ['apply' , 'destroy'],name: 'ACTION')
   }
   stages {
-
-    stage("build Jar") {
-      
-      steps {
-        script{
-            buildJar()
-        }
-      }
-    }
-
-    stage("build docker image") {
-      
-      steps {
-        script{
-          buildImg()
-        }
-      }
-    }
-
     stage("terraform init") {
       steps {
         script {
@@ -81,15 +56,6 @@ pipeline {
           dir('terraform') {
             sh 'terraform $ACTION --auto-approve'
           }
-        }
-      }
-    }
-    
-    stage("deploy to ACR_hub") {
-      
-      steps {
-        script{
-            deployApp()
         }
       }
     }
