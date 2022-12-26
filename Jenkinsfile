@@ -28,9 +28,9 @@ pipeline {
         script {
           dir('terraform'){
             withCredentials([azureServicePrincipal(credentialsId: 'azure-credentials')]) {
-              echo 'My client id is $AZURE_CLIENT_ID'
-              echo 'My client secret is $AZURE_CLIENT_SECRET'
-              echo 'My tenant id is $AZURE_TENANT_ID'
+              echo "My client id is $AZURE_CLIENT_ID"
+              echo "My client secret is $AZURE_CLIENT_SECRET"
+              echo "My tenant id is $AZURE_TENANT_ID"
               echo "My subscription id is $AZURE_SUBSCRIPTION_ID"
             }
             sh 'terraform plan'
@@ -53,7 +53,7 @@ pipeline {
       steps {
         script {
           dir('terraform') {
-            sh 'terraform $ACTION --auto-approve'
+            sh "terraform $ACTION --auto-approve"
           }
         }
       }
