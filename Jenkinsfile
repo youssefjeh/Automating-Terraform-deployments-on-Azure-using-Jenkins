@@ -4,6 +4,11 @@ pipeline {
     choice(choices: ['apply' , 'destroy'],name: 'ACTION')
   }
   stages {
+    stage('Authenticate with Azure') {
+      steps {
+        azureLogin credentialsId: 'azure-credentials'
+      }
+    }
     stage("terraform init") {
       steps {
         script {
@@ -27,10 +32,6 @@ pipeline {
       steps {
         script {
           dir('terraform'){
-            withCredentials([azureServicePrincipal(credentialsId: 'azure-credentials')]){
-              sh "az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID"
- //             sh 'az account set -s $AZURE_SUBSCRIPTION_ID'
-            }
             sh 'terraform plan'
           }
         }
